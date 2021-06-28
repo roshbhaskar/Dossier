@@ -2,15 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 const Error = () => {
-  return <Wrapper>
-    <div>
-      <h1>404</h1>
-      <h3>Oops! This page doesn't exist</h3>
-      <Link to="/login" className="btn">
-        Back Home
-      </Link>
-    </div>
-  </Wrapper>;
+  return (
+    <Wrapper>
+      <div>
+        <h1>404</h1>
+        <h3>The page does not exit!</h3>
+        <Link to='/' className='btn'>
+          back home
+        </Link>
+      </div>
+    </Wrapper>
+  );
 };
 const Wrapper = styled.section`
   min-height: 100vh;

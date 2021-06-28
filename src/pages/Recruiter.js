@@ -1,22 +1,11 @@
-import React from 'react';
-import { Info, Repos, User, Search, Navbar } from '../components';
-import loadingImage from '../images/preloader.gif';
-import { GithubContext } from '../context/context';
-const Recruiter = () => {
-  return (
-    <main>
-      {/* <Navbar>
+import React from 'react'
 
-      </Navbar> */}
-<center><h2>Recruiters Profile</h2></center>
-<br/>
-      <Search/>
-
-      {/* <Info/> */}
-       {/* <User/>  */}
-      <Repos/> 
-    </main>
-  );
-};
+function Recruiter() {
+    return (
+        <div>
+            <h2>HI</h2>
+        </div>
+    )
+}
 
 export default Recruiter;

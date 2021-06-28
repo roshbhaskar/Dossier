@@ -1,49 +1,37 @@
 import React from 'react';
 import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
-import Recruiter from './pages/Recruiter'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Search } from './components';
-import { Link } from 'react-router-dom';
 import Verify from './pages/Verify';
+import Recruiter from './pages/Recruiter';
 
-import firebase from 'firebase';
-
-
-
-class App extends React.Component {
-  render(){
+function App() {
   return (
-    <Router>
-      <Switch>
-          <Route path="/user" exact={true}>
-          <center>
-           <br></br><br/><h3>Enter Username and Upload Resume</h3><br/><br/>
-           <Verify/></center> 
+    <AuthWrapper>
+      <Router>
+        <Switch>
+          <PrivateRoute path='/profile' exact={true}>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+          <PrivateRoute path='/' exact={true}> 
+          {/* always gets redirected here on click */}
+            <Verify/>
+          </PrivateRoute>
+          <PrivateRoute path='/recruiter' exact={true}>
+            <Recruiter/>
+          </PrivateRoute>
+          {/* <Route path='/verify' exact={true}>
+            <Verify/>
+          </Route> */}
+          <Route path='/login'>
+            <Login></Login>
           </Route>
-
-          <Route path="/dashboard" exact={true}>
-            <Dashboard user="raniyer"/>
+          <Route path='*'>
+            <Error></Error>
           </Route>
-          
-          <Route path="/" exact={true}>
-            <Dashboard/>
-          </Route>
-          
-          <Route path="/company" exact={true}>
-              <Recruiter/>
-          </Route>
-          
-          <Route path="/login">
-            <Login />
-          </Route>
-          
-          <Route path="*">
-              <Error></Error>
-          </Route>
-      </Switch>
-    </Router>
+        </Switch>
+      </Router>
+    </AuthWrapper>
   );
-  }
 }
 
 export default App;

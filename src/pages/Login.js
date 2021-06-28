@@ -2,22 +2,23 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/login-img.svg';
-import { Link } from 'react-router-dom';
+//Login Button
 const Login = () => {
-  return <Wrapper>
-    <div className="container">
-      <h1>Dossier</h1>
-
-      <Link to = "/user">
-      <button className="btn">Candidate</button>
-      </Link>
-
-      <Link to="/company" className="btn">
-      Recruiter
-      </Link>
-    
-    </div>
-  </Wrapper>;
+  const { loginWithRedirect } = useAuth0(); //using react hooks
+  return (
+    <Wrapper>
+      <div className='container'>
+        {/* <img src={loginImg} alt='github user' /> */}
+        <h1>Dossier</h1>
+        <button className='btn' onClick={loginWithRedirect}>
+          Candidate
+        </button>
+        <button className='btn' onClick={loginWithRedirect}>
+          Recruiter
+        </button>
+      </div>
+    </Wrapper>
+  );
 };
 const Wrapper = styled.section`
   min-height: 100vh;

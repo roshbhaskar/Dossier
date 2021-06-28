@@ -1,133 +1,29 @@
-import React from 'react';
-import styled from 'styled-components';
-import { MdSearch } from 'react-icons/md';
-import { GithubContext } from '../context/context';
+import React from 'react'
 import { Link } from 'react-router-dom';
-import firebase from 'firebase';
+import styled from 'styled-components';
 
-const Verify = () => {
-  const[user,setUser]= React.useState('');
-  const {searchGithubUser} = React.useContext(GithubContext);
-  
-  var username_git = [];
-  // ADD USER INTO DB
-  const handleSubmit=(e) =>{
-    e.preventDefault();
-    if(user){
-
-     
-      //console.log("ITS DONE HERE!");
-      //firebase.firestore().collection('users').doc(user).set({lang: "Pyhotn"},{merge:true});
-
-      searchGithubUser(user);
-      if(searchGithubUser(user)==true){
-        firebase.firestore().collection('users').doc(user).set({name:"XYZ"});
-      }
-      // username_git.push(user);
-      // console.log(username_git,"USERNAME_GIT");
-    
-    }
-  };
-  
-  return <section className="section">
-    <Wrapper className="section-center">
-      <form onSubmit={handleSubmit}>
-      <bold><label>Github Username</label></bold>
-        <div className="form-control">
-        
-          {/* <MdSearch/> */}
-          <input type="text" 
-          value = {user} 
-          onChange={(e)=>setUser(e.target.value)} />
-          <button type="submit">Verify</button>
+function Verify() {
+    return (
+        <div>
+            Verify Page
+            <Link to = "/profile" className="btn">Next</Link>
         </div>
-      </form>
-      <br/>
-      <Link to="/dashboard">LOGIN</Link>
-    </Wrapper>
-  </section>
-  
-};
+    )
+}
 
-const Wrapper = styled.div`
-  position: relative;
+const Wrapper = styled.section`
+  min-height: 100vh;
   display: grid;
-  gap: 1rem 1.75rem;
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr max-content;
-    align-items: center;
-    h3 {
-      padding: 0 0.5rem;
-    }
-  }
-  .form-control {
-   
-    display: inline ;
-    align-items: center;
-    grid-template-columns: auto 1fr auto;
-    column-gap: 0.5rem;
-    border-radius: 5px;
-    padding: 0.5rem;
-    input {
-      border-color: transparent;
-      outline-color: var(--clr-grey-10);
-      letter-spacing: var(--spacing);
-      color: var(--clr-grey-3);
-      padding: 0.25rem 0.5rem;
-    }
-    input::placeholder {
-      color: var(--clr-grey-3);
-      text-transform: capitalize;
-      letter-spacing: var(--spacing);
-    }
-    button {
-      border-radius: 5px;
-      border-color: transparent;
-      padding: 0.25rem 0.5rem;
-      text-transform: capitalize;
-      letter-spacing: var(--spacing);
-      background: var(--clr-primary-5);
-      color: var(--clr-white);
-      transition: var(--transition);
-      cursor: pointer;
-      &:hover {
-        background: var(--clr-primary-8);
-        color: var(--clr-primary-1);
-      }
-    }
-
-    svg {
-      color: var(--clr-grey-5);
-    }
-    input,
-    button,
-    svg {
-      font-size: 1.3rem;
-    }
-    @media (max-width: 800px) {
-      button,
-      input,
-      svg {
-        font-size: 0.85rem;
-      }
-    }
+  place-items: center;
+  background: var(--clr-primary-10);
+  text-align: center;
+  h1 {
+    font-size: 10rem;
   }
   h3 {
-    margin-bottom: 0;
-    color: var(--clr-grey-5);
-    font-weight: 400;
+    color: var(--clr-grey-3);
+    margin-bottom: 1.5rem;
   }
 `;
-const ErrorWrapper = styled.article`
-  position: absolute;
-  width: 90vw;
-  top: 0;
-  left: 0;
-  transform: translateY(-100%);
-  text-transform: capitalize;
-  p {
-    color: red;
-    letter-spacing: var(--spacing);
-  }
-`;
+
 export default Verify;
