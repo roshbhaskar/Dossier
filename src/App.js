@@ -9,25 +9,31 @@ function App() {
     <AuthWrapper>
       <Router>
         <Switch>
+
           <PrivateRoute path='/profile' exact={true}>
             <Dashboard></Dashboard>
           </PrivateRoute>
+          
           <PrivateRoute path='/' exact={true}> 
           {/* always gets redirected here on click */}
             <Verify/>
           </PrivateRoute>
+          
           <PrivateRoute path='/recruiter' exact={true}>
             <Recruiter/>
           </PrivateRoute>
           {/* <Route path='/verify' exact={true}>
             <Verify/>
           </Route> */}
+          
           <Route path='/login'>
             <Login></Login>
           </Route>
+          
           <Route path='*'>
             <Error></Error>
           </Route>
+        
         </Switch>
       </Router>
     </AuthWrapper>

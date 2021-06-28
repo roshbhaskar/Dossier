@@ -2,11 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
+
+
+
+
 const Search = () => {
   const [user, setUser] = React.useState('');
+
   const { requests, error, searchGithubUser, isLoading } = React.useContext(
     GithubContext
   );
+
   // get things from global context
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,17 +23,22 @@ const Search = () => {
       // setUser('');
     }
   };
+  
   return (
     <section className='section'>
+     
       <Wrapper className='section-center'>
         {error.show && (
           <ErrorWrapper>
             <p>{error.msg}</p>
           </ErrorWrapper>
         )}
+     
+     
         <form onSubmit={handleSubmit}>
           <div className='form-control'>
             <MdSearch />
+     
             <input
               type='text'
               placeholder='enter github user'
@@ -39,7 +50,7 @@ const Search = () => {
             )}
           </div>
         </form>
-        <h3>requests : {requests} / 60</h3>
+        {/* <h3>requests : {requests} / 60</h3> */}
       </Wrapper>
     </section>
   );

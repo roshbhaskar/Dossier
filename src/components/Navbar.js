@@ -11,8 +11,10 @@ const Navbar = () => {
     user, //grabs the users information through authentication 
     isLoading,
   } = useAuth0();
+
   const isUser = isAuthenticated && user;
   console.log(user);
+  
   return (
     <Wrapper>
       
@@ -22,6 +24,7 @@ const Navbar = () => {
           Welcome, <strong>{user.name.toUpperCase()}</strong>
         </h4>
       )}
+      
       {isUser ? (
         <button
           onClick={() => {

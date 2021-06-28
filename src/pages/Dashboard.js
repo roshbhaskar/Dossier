@@ -3,8 +3,12 @@ import { Repos, Navbar } from '../components';
 import loadingImage from '../images/150x150.gif';
 import { GithubContext } from '../context/context';
 import Webscraper from '../components/Webscraper';
+
+
+
 const Dashboard = () => {
   const { isLoading } = React.useContext(GithubContext);
+
   if (isLoading) {
     return (
       <main>
@@ -14,6 +18,7 @@ const Dashboard = () => {
       </main>
     );
   }
+  
   return (
     <main>
       <Navbar></Navbar>
@@ -24,6 +29,7 @@ const Dashboard = () => {
       <Repos />
     </main>
   );
+  
 };
 
 export default Dashboard;

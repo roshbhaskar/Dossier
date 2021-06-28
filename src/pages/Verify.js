@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Search } from '../components';
 
 function Verify() {
     return (
         <div>
             Verify Page
+            <Search/>
             <Link to = "/profile" className="btn">Next</Link>
         </div>
     )
