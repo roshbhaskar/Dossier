@@ -1,6 +1,6 @@
 import React from 'react';
 import { Repos, Navbar } from '../components';
-import loadingImage from '../images/preloader.gif';
+import loadingImage from '../images/150x150.gif';
 import { GithubContext } from '../context/context';
 import Webscraper from '../components/Webscraper';
 const Dashboard = () => {
