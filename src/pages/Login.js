@@ -35,5 +35,8 @@ const Wrapper = styled.section`
   h1 {
     margin-bottom: 1.5rem;
   }
+  .btn{
+    margin: 1rem;
+  }
 `;
 export default Login;

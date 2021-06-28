@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import mockUser from './mockData.js/mockUser';
-import mockRepos from './mockData.js/mockRepos';
-import mockFollowers from './mockData.js/mockFollowers';
+import mockUser from './mockData/mockUser';
+import mockRepos from './mockData/mockRepos';
+// import mockFollowers from './mockData.js/mockFollowers';
 import axios from 'axios';
 
 const rootUrl = 'https://api.github.com';
@@ -12,8 +12,9 @@ const GithubContext = React.createContext();
 
 const GithubProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState(mockUser);
+  console.log("GITHUB USER",githubUser);
   const [repos, setRepos] = useState(mockRepos);
-  const [followers, setFollowers] = useState(mockFollowers);
+  // const [followers, setFollowers] = useState(mockFollowers);
   // request loading
   const [requests, setRequests] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,14 +36,16 @@ const GithubProvider = ({ children }) => {
         axios(`${followers_url}?per_page=100`),
       ])
         .then((results) => {
-          const [repos, followers] = results;
+          const [repos
+            // , followers
+          ] = results;
           const status = 'fulfilled';
           if (repos.status === status) {
             setRepos(repos.value.data);
           }
-          if (followers.status === status) {
-            setFollowers(followers.value.data);
-          }
+          // if (followers.status === status) {
+          //   setFollowers(followers.value.data);
+          // }
         })
         .catch((err) => console.log(err));
     } else {
@@ -73,14 +76,14 @@ const GithubProvider = ({ children }) => {
   useEffect(checkRequests, []);
   // get initial user
   useEffect(() => {
-    searchGithubUser('john-smilga');
+    searchGithubUser('raniyer');//github id
   }, []);
   return (
     <GithubContext.Provider
       value={{
         githubUser,
         repos,
-        followers,
+        // followers,
         requests,
         error,
         searchGithubUser,
