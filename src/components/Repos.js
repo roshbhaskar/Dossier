@@ -2,13 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { GithubContext } from '../context/context';
 import { Pie, Column, Bar, Doughnut } from './Charts';
+import { firebase } from '@firebase/app';
+import '@firebase/firestore'
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Repos = () => {
 
   const { repos } = React.useContext(GithubContext);
 
+  const { user  } = useAuth0();
+
   const languages = repos.reduce((total, item) => {
     
+    
+
     const { language, stargazers_count } = item;
     if (!language) return total;
     if (!total[language]) {
@@ -57,6 +64,8 @@ const Repos = () => {
 
   stars = Object.values(stars).slice(-5).reverse();
   forks = Object.values(forks).slice(-5).reverse();
+
+  firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label},{merge:true});
 
   return (
     <section className='section'>
