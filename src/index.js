@@ -6,7 +6,8 @@ import App from './App';
 import { GithubProvider } from './context/context';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-import firebase from "firebase";
+import { firebase } from '@firebase/app';
+import '@firebase/firestore'
 
 //const firebase = require("firebase");
 // Required for side-effects
@@ -41,7 +42,8 @@ import firebase from "firebase";
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  
+
+  // firebase.firestore().collection('users').doc('chick').set({name:"HELLLOO"});
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider

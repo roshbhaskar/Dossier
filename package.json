@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "firebase": "^8.6.8",
     "fusioncharts": "^3.15.1-sr.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -37,5 +38,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Two main issues with the authentication :\r - Single Page authentication is only working\r - The candidate and recruiter are being redirected to the same webpage due to the fact that <br> both the users are identified as one\r ## Team members\r - Arno\r - Raniyer\r - Roshu\r - Charan",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justArno/Dossier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justArno/Dossier/issues"
+  },
+  "homepage": "https://github.com/justArno/Dossier#readme"
 }
