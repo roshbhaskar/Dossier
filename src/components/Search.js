@@ -5,7 +5,9 @@ import { GithubContext } from '../context/context';
 import { firebase } from '@firebase/app';
 import '@firebase/firestore'
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
+const rootUrl = 'https://api.github.com';
 
 const Search = () => {
   const [github_User, setUser] = React.useState('');
@@ -16,16 +18,26 @@ const Search = () => {
     GithubContext
   );
 
+  const updateGithub = async () =>{
+    const response = await axios(`${rootUrl}/users/${github_User}`).catch((err) =>
+      console.log(err)
+    );
+    if(response){
+      console.log("ITS DONE HERE!",error);
+      firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User});
+    }
+    else{
+      console.log("no response");
+    }
+  }
   // get things from global context
   const handleSubmit = (e) => {
     e.preventDefault();
     if (github_User) {
       // more logic coming up soon
-      searchGithubUser(github_User);
-      if(error.show){
-        console.log("ITS DONE HERE!");
-        firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User});
-      }
+      searchGithubUser(github_User)
+      // console.log("lol",searchGithubUser(github_User));
+      updateGithub()
       //optional
       // setUser('');
     }
