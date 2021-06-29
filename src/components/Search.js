@@ -2,13 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
-
-
+import { firebase } from '@firebase/app';
+import '@firebase/firestore'
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Search = () => {
-  const [user, setUser] = React.useState('');
+  const [github_User, setUser] = React.useState('');
 
+  
   const { requests, error, searchGithubUser, isLoading } = React.useContext(
     GithubContext
   );
@@ -16,9 +18,13 @@ const Search = () => {
   // get things from global context
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user) {
+    if (github_User) {
       // more logic coming up soon
-      searchGithubUser(user);
+      searchGithubUser(github_User);
+      if(error.show){
+        console.log("ITS DONE HERE!");
+        firebase.firestore().collection('users').doc(github_User).set({name:"XYZ"});
+      }
       //optional
       // setUser('');
     }
@@ -41,8 +47,8 @@ const Search = () => {
      
             <input
               type='text'
-              placeholder='enter github user'
-              value={user}
+              placeholder='enter github github_User'
+              value={github_User}
               onChange={(e) => setUser(e.target.value)}
             />
             {requests > 0 && !isLoading && (
