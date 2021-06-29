@@ -12,10 +12,10 @@ const Login = () => {
       <div className='container'>
         {/* <img src={loginImg} alt='github user' /> */}
         <h1>Dossier</h1>
-        <button className='btn' onClick={loginWithRedirect}>
+        <button className='btn' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/' })}>
           Candidate
         </button>
-        <button className='btn' onClick={loginWithRedirect}>
+        <button className='btn' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/recruiter' })}>
           Recruiter
         </button>
       </div>
