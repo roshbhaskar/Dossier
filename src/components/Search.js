@@ -48,12 +48,12 @@ const Search = () => {
      
             <input
               type='text'
-              placeholder='enter github github_User'
+              placeholder='github username'
               value={github_User}
               onChange={(e) => setUser(e.target.value)}
             />
             {requests > 0 && !isLoading && (
-              <button type='submit'>search</button>
+              <button type='submit'>Verify</button>
             )}
           </div>
         </form>

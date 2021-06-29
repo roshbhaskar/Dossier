@@ -49,7 +49,7 @@ const GithubProvider = ({ children }) => {
         })
         .catch((err) => console.log(err));
     } else {
-      toggleError(true, 'there is no user with that username');
+      toggleError(true, 'Invalid Github username!');
     }
     checkRequests();
     setIsLoading(false);
