@@ -13,7 +13,7 @@ ReactDOM.render(
       clientId='ppT2iwRi8euI9rWxuDXPWsfBgioDfmmr'
       // redirectUri={window.location.origin} 
       redirectUri="http://localhost:3000/recruiter"
-      cacheLocation='localstorage' //local storage of login
+      // cacheLocation='localstorage' //local storage of login
     >
       <GithubProvider>
         <App />
