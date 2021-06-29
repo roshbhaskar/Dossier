@@ -10,6 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Search = () => {
   const [github_User, setUser] = React.useState('');
 
+  const { user  } = useAuth0();
   
   const { requests, error, searchGithubUser, isLoading } = React.useContext(
     GithubContext
@@ -23,7 +24,7 @@ const Search = () => {
       searchGithubUser(github_User);
       if(error.show){
         console.log("ITS DONE HERE!");
-        firebase.firestore().collection('users').doc(github_User).set({name:"XYZ"});
+        firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User});
       }
       //optional
       // setUser('');

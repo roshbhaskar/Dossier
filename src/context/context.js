@@ -12,7 +12,7 @@ const GithubContext = React.createContext();
 
 const GithubProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState(mockUser);
-  console.log("GITHUB USER",githubUser);
+  // console.log("GITHUB USER",githubUser);
   const [repos, setRepos] = useState(mockRepos);
   // const [followers, setFollowers] = useState(mockFollowers);
   // request loading
