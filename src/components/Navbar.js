@@ -30,11 +30,12 @@ const Navbar = () => {
           onClick={() => {
             logout({ returnTo: window.location.origin });
           }}
+          className="btn"
         >
           logout
         </button>
       ) : (
-        <button onClick={loginWithRedirect}>login</button>
+        <button className="btn" onClick={loginWithRedirect}>login</button>
       )}
     </Wrapper>
   );
@@ -68,6 +69,8 @@ const Wrapper = styled.nav`
     letter-spacing: var(--spacing);
     color: var(--clr-grey-5);
     cursor: pointer;
+    position: absolute;
+    right: 9%;
   }
 `;
 
