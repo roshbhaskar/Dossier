@@ -24,7 +24,7 @@ const Search = () => {
     );
     if(response){
       console.log("ITS DONE HERE!",error);
-      firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User});
+      firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User,email:user.email,gpa:5});
     }
     else{
       console.log("no response");
