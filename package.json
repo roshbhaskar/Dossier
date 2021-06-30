@@ -38,18 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "Two main issues with the authentication :\r - Single Page authentication is only working\r - The candidate and recruiter are being redirected to the same webpage due to the fact that <br> both the users are identified as one\r ## Team members\r - Arno\r - Raniyer\r - Roshu\r - Charan",
-  "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/justArno/Dossier.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/justArno/Dossier/issues"
-  },
-  "homepage": "https://github.com/justArno/Dossier#readme"
+  }
 }
