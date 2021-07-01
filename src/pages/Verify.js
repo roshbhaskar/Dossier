@@ -5,24 +5,21 @@ import { Search } from '../components';
 
 function Verify() {
     return (
-        <div>
-            Verify Page
+        <Wrapper>
+       
+            <h3 className="verifyHeading">Enter usernames </h3>
             <Search/>
-            <Link to = "/profile" className="btn">Next</Link>
-        </div>
+            <br/>
+            <Link to = "/profile" className="btn">Continue</Link>
+        </Wrapper>
     )
 }
 
 const Wrapper = styled.section`
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: var(--clr-primary-10);
-  text-align: center;
-  h1 {
-    font-size: 10rem;
-  }
+text-align: center;
+place-items: center;
   h3 {
+    margin-top:3rem;
     color: var(--clr-grey-3);
     margin-bottom: 1.5rem;
   }

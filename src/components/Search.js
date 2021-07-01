@@ -56,7 +56,7 @@ const Search = () => {
      
         <form onSubmit={handleSubmit}>
           <div className='form-control'>
-            <MdSearch />
+            {/* <MdSearch /> */}
      
             <input
               type='text'
@@ -65,7 +65,7 @@ const Search = () => {
               onChange={(e) => setUser(e.target.value)}
             />
             {requests > 0 && !isLoading && (
-              <button type='submit'>Verify</button>
+              <button className="btn" type='submit'>Verify</button>
             )}
           </div>
         </form>
@@ -87,8 +87,9 @@ const Wrapper = styled.div`
     }
   }
   .form-control {
-    background: var(--clr-white);
-    display: grid;
+   
+    display: absolute ;
+    // position: fixed;
     align-items: center;
     grid-template-columns: auto 1fr auto;
     column-gap: 0.5rem;
@@ -99,7 +100,11 @@ const Wrapper = styled.div`
       outline-color: var(--clr-grey-10);
       letter-spacing: var(--spacing);
       color: var(--clr-grey-3);
-      padding: 0.25rem 0.5rem;
+      padding: 0.5rem 2rem;
+      border-radius:5px;
+      margin-right:1rem;
+      // position: fixed;
+      // right:50%;
     }
     input::placeholder {
       color: var(--clr-grey-3);
@@ -107,18 +112,19 @@ const Wrapper = styled.div`
       letter-spacing: var(--spacing);
     }
     button {
-      border-radius: 5px;
-      border-color: transparent;
-      padding: 0.25rem 0.5rem;
-      text-transform: capitalize;
-      letter-spacing: var(--spacing);
-      background: var(--clr-primary-5);
-      color: var(--clr-white);
-      transition: var(--transition);
-      cursor: pointer;
-      &:hover {
-        background: var(--clr-primary-8);
-        color: var(--clr-primary-1);
+      font-size:1rem;
+    //   border-radius: 5px;
+    //   border-color: transparent;
+    //   padding: 0.38rem 0.5rem;
+    //   text-transform: capitalize;
+    //   letter-spacing: var(--spacing);
+    //   background: var(--clr-primary-5);
+    //   color: var(--clr-white);
+    //   transition: var(--transition);
+    //   cursor: pointer;
+    //   &:hover {
+    //     background: var(--clr-primary-8);
+    //     color: var(--clr-primary-1);
       }
     }
 
@@ -134,7 +140,7 @@ const Wrapper = styled.div`
       button,
       input,
       svg {
-        font-size: 0.85rem;
+        font-size: 1remrem;
       }
     }
   }
@@ -154,6 +160,9 @@ const ErrorWrapper = styled.article`
   p {
     color: red;
     letter-spacing: var(--spacing);
+    top: 100px;
+    position: relative;
+    right:80px;
   }
 `;
 export default Search;

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+//import css from 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components';
 
 import { firebase } from '@firebase/app';
 import '@firebase/firestore'
@@ -41,14 +41,15 @@ function DispCandidate() {
 //   );
 
     return (
+      <Wrapper>
       <div className="MainDiv">
         <div class="jumbotron text-center bg-sky">
-            <h3>Top Candidates!</h3>
+            <center><h3>Top Candidates!</h3></center>
         </div>
       <br/><br/>
         <div className="container">
-            <table id="example" class="display table">
-              <thead class="thead-dark">
+            <table>
+              {/* <thead class="thead-dark"> */}
                   <tr>
                       <th>Name</th>
                       <th>Gpa</th>
@@ -56,7 +57,7 @@ function DispCandidate() {
                       <th>Languages</th>
                       <th>Email</th>
                   </tr>
-              </thead>
+              {/* </thead> */}
               <tbody>
               {blogs.map(data => {
                   
@@ -80,7 +81,30 @@ function DispCandidate() {
             
        </div>
       </div>
+      </Wrapper>
     );
   
 }
+
+const Wrapper = styled.section`
+  .container{
+    padding-left:5rem;
+    padding-right:5rem;
+  }
+  table{
+    width:100%;
+  }
+  // table, th, td {
+  //  border: 1px solid black;
+  // }  
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid black;
+  }
+`;
+
 export default DispCandidate
