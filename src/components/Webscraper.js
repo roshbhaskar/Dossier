@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { Component } from "react";
 import styled from 'styled-components';
+import rp from "request-promise";
+/*
 export default function Webscraper() {
     return (
         <Wrapper>
@@ -7,7 +9,26 @@ export default function Webscraper() {
         </Wrapper>
     )
 }
+*/
 
+
+class Webscraper extends Component {
+  state = {};
+
+  componentDidMount() {
+    // use the request-promise library to fetch the HTML from pokemon.org
+    rp("https://cors-anywhere.herokuapp.com/https://leetcode.com/raniyer/")
+      .then(html => console.log(html))
+  }
+
+  render() {
+    return (
+      <div>
+        <p>hello</p>
+      </div>
+    );
+  }
+}
 
 const Wrapper = styled.nav`
   padding: 1.5rem;
@@ -40,3 +61,4 @@ const Wrapper = styled.nav`
     cursor: pointer;
   }
 `;
+export default Webscraper;

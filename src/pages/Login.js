@@ -11,7 +11,7 @@ const Login = () => {
     <Wrapper>
       <div className='container'>
         {/* <img src={loginImg} alt='github user' /> */}
-        <p className="dossier">Dossier</p>
+        <p className="dossier">Dossier.</p>
         <button className='btn' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/' })}>
           Candidate
         </button>
@@ -29,7 +29,11 @@ const Wrapper = styled.section`
   .dossier{
     font-family: 'Brush Script MT', cursive;
     font-size:6rem;
-    color : black;
+  background: -webkit-linear-gradient(#52d1da,#31103b);
+  // background: -webkit-linear-gradient(#52d1da,#080808);
+  // background: -webkit-linear-gradient(#ffc8ed,#6f1351);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   }
   .container {
     width: 90vw;
