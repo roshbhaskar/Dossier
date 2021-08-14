@@ -6,24 +6,60 @@ import { firebase } from '@firebase/app';
 import '@firebase/firestore'
 
 
-
 function DispCandidate() {
   const [blogs,setBlogs]=useState([])
+  const [List,setList]=useState([])
+
+  useEffect(() => {
+    fetchBlogs();
+  },[])
 
   const fetchBlogs=async()=>{
     const response=firebase.firestore().collection('users');
     const data=await response.get();
-    data.docs.forEach(item=>{
-     setBlogs([...blogs,item.data()])
-    })
+    data.docs.forEach(item=>
+    //   {
+    //  setBlogs([...blogs,item.data()])
+    // //  console.log(item);
+    // setList([...blogs,item]);
+    // }
+    {
+      var data = item.data();
+      setBlogs(arr => [...arr , data]);
+        
+  }
+    )
     console.log("data",data,"response",response);
   }
   
-  useEffect(() => {
-    fetchBlogs();
-  }, [])
+  // useEffect(() => {
+  //   fetchBlogs();
+  // }, [])
 
-  console.log("blogs?",blogs);
+   
+  //const [info , setInfo] = useState([]);
+  
+    // Start the fetch operation as soon as
+    // the page loads
+    // window.addEventListener('load', () => {
+    //     Fetchdata();
+    //   });
+  
+    // // Fetch the required data using the get() method
+    // const Fetchdata =async()=>{
+    //   firebase.firestore().collection('users').get().then((querySnapshot) => {
+             
+    //         // Loop through the data and store
+    //         // it in array to display
+    //         querySnapshot.forEach(element => {
+    //             var data = element.data();
+    //             setBlogs(arr => [...arr , data]);
+                  
+    //         });
+    //     })
+    // }
+
+  console.log("blogs?",blogs);//,"lsit",List);
 
 //   return (
 //     <div className="App">
@@ -44,7 +80,7 @@ function DispCandidate() {
       <Wrapper>
       <div className="MainDiv">
         <div class="jumbotron text-center bg-sky">
-            <center><h3>Top Candidates!</h3></center>
+            {/* <center><h3>Top Candidates!</h3></center> */}
         </div>
       <br/><br/>
         <div className="container">
@@ -53,8 +89,8 @@ function DispCandidate() {
                   <tr>
                       <th>Name</th>
                       <th>Gpa</th>
-                      <th>Coding score</th>
                       <th>Languages</th>
+                      <th>Skills</th>
                       <th>Email</th>
                   </tr>
               {/* </thead> */}
@@ -63,10 +99,10 @@ function DispCandidate() {
                   
                   return (
                       <tr>     
-                      <td>{data.name}</td>
-                      <td>{data.gpa}</td>
-                      <td>50%</td>
+                      <td><a href="www.google.com" target="_blank">{data.name}</a></td>
+                      <td>none</td>
                       <td>{data.first_lang},{data.second_lang}</td>
+                      <td>none</td>
                       <td>{data.email}</td>
                       </tr>
                       

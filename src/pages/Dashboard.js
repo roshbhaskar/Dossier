@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <main>
       <Navbar></Navbar>
-      <Webscraper/>
+      {/* <Webscraper/> */}
       {/* <Search />
       <Info /> */}
       {/* <User /> */}

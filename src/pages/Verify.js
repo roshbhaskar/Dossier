@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Search } from '../components';
+import Webscraper from '../components/Webscraper';
 
 function Verify() {
     return (
@@ -9,6 +10,10 @@ function Verify() {
        
             <h3 className="verifyHeading">Enter usernames </h3>
             <Search/>
+            <br/>
+            <br/>
+            <Webscraper/>
+            <br/>
             <br/>
             <Link to = "/profile" className="btn">Continue</Link>
         </Wrapper>

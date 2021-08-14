@@ -60,7 +60,7 @@ const Search = () => {
      
             <input
               type='text'
-              placeholder='github username'
+              placeholder='Github'
               value={github_User}
               onChange={(e) => setUser(e.target.value)}
             />
