@@ -46,6 +46,15 @@ function DispCandidate() {
   //   fetchBlogs();
   // }, [])
 
+  function compare( a, b ) {
+    if ( a.gpa < b.gpa ){
+      return 1; // for increasing order make this -1
+    }
+    if ( a.gpa > b.gpa ){
+      return -1;
+    }
+    return 0;
+  }
    
   //const [info , setInfo] = useState([]);
   
@@ -90,9 +99,25 @@ const [skill,setSkill]=useState('')
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Blogs are gonna be changed!")
+    Object.keys(blogs).map(function(keyName, keyIndex) {
+     
+      //RECOMMENDER LOGIC!
+      blogs[keyName].score = blogs[keyName].score*blogs[keyName].gpa
+      console.log("Keyname",blogs[keyName].score);
+    })
   };
 
-  console.log("This is skill",skill)
+  // setBlogs(blogs.sort(compare));
+  blogs.sort(compare)
+  console.log("This is blog",blogs)
+
+  
+
+  //console.log("Bruh",superSecret);
+
+
+
+
     return (
       <Wrapper>
         <center> <WrappeR>
@@ -104,7 +129,7 @@ const handleSubmit = (e) => {
             
                     <input
                     type='text'
-                    placeholder='Language/Skill'
+                    placeholder='Language'
                     value={skill}
                     onChange={(e) => setSkill(e.target.value)}
                     />
