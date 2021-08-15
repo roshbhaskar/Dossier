@@ -1,15 +1,20 @@
 import React,{useState,useEffect} from 'react';
 //import css from 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
-
+import { GithubContext } from '../context/context';
 import { firebase } from '@firebase/app';
 import '@firebase/firestore'
-
+import { Link } from 'react-router-dom';
 
 function DispCandidate() {
   const [blogs,setBlogs]=useState([])
-  const [List,setList]=useState([])
 
+
+  const { requests, error, searchGithubUser, isLoading } = React.useContext(
+    GithubContext
+  );
+
+  
   useEffect(() => {
     fetchBlogs();
   },[])
@@ -32,6 +37,10 @@ function DispCandidate() {
     console.log("data",data,"response",response);
   }
   
+  const handleClick = (github_User) =>{
+    //searchGithubUser(github_User);
+    console.log("clicked",github_User);
+  }
   // useEffect(() => {
   //   fetchBlogs();
   // }, [])
@@ -92,6 +101,7 @@ function DispCandidate() {
                       <th>Languages</th>
                       <th>Skills</th>
                       <th>Email</th>
+                      <th>Profile</th>
                   </tr>
               {/* </thead> */}
               <tbody>
@@ -99,11 +109,12 @@ function DispCandidate() {
                   
                   return (
                       <tr>     
-                      <td><a href="www.google.com" target="_blank">{data.name}</a></td>
+                      <td >{data.name}</td>
                       <td>none</td>
                       <td>{data.first_lang},{data.second_lang}</td>
                       <td>none</td>
                       <td>{data.email}</td>
+                      <td><Link to={`${data.github_ID}`} className="btn" target="_blank" >View</Link></td>
                       </tr>
                       
                   );
@@ -141,6 +152,9 @@ const Wrapper = styled.section`
     text-align: left;
     border-bottom: 1px solid black;
   }
+  // .btn{
+  //   top:2rem;
+  // }
 `;
 
 export default DispCandidate

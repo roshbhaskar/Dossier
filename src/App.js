@@ -3,6 +3,7 @@ import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Verify from './pages/Verify';
 import Recruiter from './pages/Recruiter';
+import Recruiter_Dashboard from './pages/Recruiter_Dashboard.js';
 
 function App() {
   return (
@@ -22,18 +23,25 @@ function App() {
           <PrivateRoute path='/recruiter' exact={true}>
             <Recruiter/>
           </PrivateRoute>
+
+         
           {/* <Route path='/verify' exact={true}>
             <Verify/>
           </Route> */}
           
-          <Route path='/login'>
+          <Route path='/login' >
             <Login></Login>
           </Route>
           
+         
+        
+          <Route path='/:handle' exact={true}>
+            <Recruiter_Dashboard/>
+          </Route>
+
           <Route path='*'>
             <Error></Error>
           </Route>
-        
         </Switch>
       </Router>
     </AuthWrapper>
