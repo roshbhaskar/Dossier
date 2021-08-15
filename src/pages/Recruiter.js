@@ -1,36 +1,39 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react';
 import { Navbar } from '../components';
 import DispCandidate from '../components/DispCandidate';
 import styled from 'styled-components';
 
 function Recruiter() {
+
+  const [skill,setSkill]=useState('')
     const handleSubmit = (e) => {
         e.preventDefault();
       };
+    //console.log("This is skill",skill);
     return (
         <div>
             <Navbar/>
-       <center> <Wrapper>
-                <form onSubmit={handleSubmit}>
+       {/* <center> <Wrapper>
+                
+            <form onSubmit={handleSubmit}>
         
             <div className='form-control'>
-                {/* <MdSearch /> */}
-        
                 <input
                 type='text'
                 placeholder='Language/Skill'
-                //   value={hacker_User}
-                //   onChange={(e) => setUser(e.target.value)}
+                value={skill}
+                onChange={(e) => setSkill(e.target.value)}
                 />
-                {/* {!isLoading && ( */}
-                <button className="btn">Search</button>
-                {/* )} */}
+              
+                <button className="btn" type="submit" >Search</button>
+               
             </div>
             </form>
         </Wrapper>
-        </center>
+        
+        </center> */}
             {/* <h2>HI</h2> */}
-            <DispCandidate/>
+            <DispCandidate />
         </div>
     )
 }

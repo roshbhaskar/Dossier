@@ -67,10 +67,10 @@ const Repos = () => {
 
   console.log(mostUsed[0],mostUsed);
   if(mostUsed[0]){
-    firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label},{merge:true});
+    firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label,score:0.01},{merge:true});
   }
   else{
-    firebase.firestore().collection('users').doc(user.email).set({first_lang:"none",second_lang:"none"},{merge:true});
+    firebase.firestore().collection('users').doc(user.email).set({first_lang:"none",second_lang:"none",score:0.01},{merge:true});
 
   }
   // firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label},{merge:true});
