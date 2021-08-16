@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
-import { Repos, Navbar } from '../components';
+// import { Dec_repos, Navbar } from '../components';
+import Dec_repos from '../components/Dec_repos.js';
 import loadingImage from '../images/150x150.gif';
 import { GithubContext } from '../context/context';
 import Webscraper from '../components/Webscraper';
@@ -20,7 +21,7 @@ const Recruiter_Dashboard = () => {
   if (isLoading) {
     return (
       <main>
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <Search /> */}
         <img src={loadingImage} className='loading-img' alt='loding' />
       </main>
@@ -72,7 +73,7 @@ const Recruiter_Dashboard = () => {
       {/* <Search /> */}
       {/* <Info /> */}
       {/* <User /> */}
-      <Repos />
+      <Dec_repos/>
     </main>
   );
   

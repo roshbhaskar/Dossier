@@ -6,7 +6,7 @@ import { firebase } from '@firebase/app';
 import '@firebase/firestore'
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Repos = () => {
+const Dec_repos = () => {
 
   const { repos } = React.useContext(GithubContext);
 
@@ -66,15 +66,15 @@ const Repos = () => {
   forks = Object.values(forks).slice(-5).reverse();
 
   console.log(mostUsed[0],mostUsed);
-  if(mostUsed[0]){
-    console.log("USEREMAIL",user.email)
-    firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label,score:0.01},{merge:true});
-  }
-  else{
-    console.log("USEREMAIL",user.email)
-    firebase.firestore().collection('users').doc(user.email).set({first_lang:"none",second_lang:"none",score:0.01},{merge:true});
+//   if(mostUsed[0]){
+//     console.log("USEREMAIL",user.email)
+//     firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label,score:0.01},{merge:true});
+//   }
+//   else{
+//     console.log("USEREMAIL",user.email)
+//     firebase.firestore().collection('users').doc(user.email).set({first_lang:"none",second_lang:"none",score:0.01},{merge:true});
     
-  }
+//   }
   // firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label},{merge:true});
 
   return (
@@ -113,4 +113,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default Repos;
+export default Dec_repos;
