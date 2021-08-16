@@ -20,6 +20,7 @@ function DispCandidate() {
   },[])
 
   const fetchBlogs=async()=>{
+    var arr = []
     const response=firebase.firestore().collection('users');
     const data=await response.get();
     data.docs.forEach(item=>
@@ -30,14 +31,17 @@ function DispCandidate() {
     // }
     {
       var data = item.data();
-      setBlogs(arr => [...arr , data]);
+        setBlogs(arr => [...arr , data]);
+     // arr.push(data)
+     //blogs.push(data)
         
   }
     )
-    
+    //console.log("INside:",blogs)
     //console.log("data",data,"response",response);
   }
-  
+  console.log("outside:",blogs)
+
   const handleClick = (github_User) =>{
     //searchGithubUser(github_User);
     console.log("clicked",github_User);
@@ -51,6 +55,15 @@ function DispCandidate() {
       return 1; // for increasing order make this -1
     }
     if ( a.gpa > b.gpa ){
+      return -1;
+    }
+    return 0;
+  }
+  function compare_score( a, b ) {
+    if ( a.score < b.score ){
+      return 1; // for increasing order make this -1
+    }
+    if ( a.score > b.score ){
       return -1;
     }
     return 0;
@@ -78,7 +91,7 @@ function DispCandidate() {
     //     })
     // }
 
-  console.log("blogs?",blogs);//,"lsit",List);
+  //console.log("blogs?",blogs);//,"lsit",List);
 
 //   return (
 //     <div className="App">
@@ -98,18 +111,22 @@ function DispCandidate() {
 const [skill,setSkill]=useState('')
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Blogs are gonna be changed!")
-    Object.keys(blogs).map(function(keyName, keyIndex) {
+    let arr = [...blogs]
+    console.log("Blogs are gonna be changed!",arr)
+    Object.keys(arr).map(function(keyName, keyIndex) {
      
       //RECOMMENDER LOGIC!
-      blogs[keyName].score = blogs[keyName].score*blogs[keyName].gpa
-      console.log("Keyname",blogs[keyName].score);
+      arr[keyName].score = arr[keyName].score*arr[keyName].gpa
+      //setBlogs()
+      console.log("Keyname",arr[keyName].score);
+
     })
+    setBlogs(arr)
   };
 
   // setBlogs(blogs.sort(compare));
-  blogs.sort(compare)
-  console.log("This is blog",blogs)
+  blogs.sort(compare_score)
+  // console.log("This is blog",blogs)
 
   
 
@@ -142,12 +159,12 @@ const handleSubmit = (e) => {
           </center>
       <div className="MainDiv">
         <div class="jumbotron text-center bg-sky">
-            {/* <center><h3>Top Candidates!</h3></center> */}
+         
         </div>
       <br/><br/>
         <div className="container">
             <table>
-              {/* <thead class="thead-dark"> */}
+              <thead class="thead-dark">
                   <tr>
                       <th>Name</th>
                       <th>Gpa</th>
@@ -156,12 +173,12 @@ const handleSubmit = (e) => {
                       <th>Email</th>
                       <th>Profile</th>
                   </tr>
-              {/* </thead> */}
+              </thead>
               <tbody>
               {blogs.map(data => {
                   
                   return (
-                      <tr>     
+                      <tr key={data.github_ID}>     
                       <td >{data.name}</td>
                       <td>{data.gpa}</td>
                       <td>{data.first_lang},{data.second_lang}</td>
