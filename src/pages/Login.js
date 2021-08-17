@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
-import loginImg from '../images/login-img.svg';
+import loginImg from '../images/Dossier.png';
 
 
 //Login Button
@@ -10,8 +10,8 @@ const Login = () => {
   return (
     <Wrapper>
       <div className='container'>
-        {/* <img src={loginImg} alt='github user' /> */}
-        <p className="dossier">Dossier.</p>
+        <img src={loginImg} alt='github user' />
+        {/* <p className="dossier">Dossier.</p> */}
         <button className='btn' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/' })}>
           Candidate
         </button>

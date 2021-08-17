@@ -40,7 +40,7 @@ function DispCandidate() {
     //console.log("INside:",blogs)
     //console.log("data",data,"response",response);
   }
-  console.log("outside:",blogs)
+  //console.log("outside:",blogs)
 
   const handleClick = (github_User) =>{
     //searchGithubUser(github_User);
@@ -116,9 +116,28 @@ const handleSubmit = (e) => {
     Object.keys(arr).map(function(keyName, keyIndex) {
      
       //RECOMMENDER LOGIC!
-      arr[keyName].score = arr[keyName].score*arr[keyName].gpa
+      // if(skill.toLowerCase()==blogs[keyName].first_lang.toLowerCase())
+      // {
+        //arr[keyName].score = arr[keyName].score+arr[keyName].gpa
+      //}
       //setBlogs()
-      console.log("Keyname",arr[keyName].score);
+      //console.log("Keyname",arr[keyName].first_lang,skill.toLowerCase(),arr[keyName].first_lang.toLowerCase());
+      if(arr[keyName].first_lang.toLowerCase()==skill.toLowerCase())
+      {
+        arr[keyName].score = arr[keyName].score+0.02
+        console.log("Gotem",arr[keyName].name,arr[keyName].score,arr[keyName].first_lang)
+      }
+      else if(arr[keyName].second_lang.toLowerCase()==skill.toLowerCase())
+      {
+        arr[keyName].score = arr[keyName].score+0.01
+        console.log("Gotem twaice",arr[keyName].name,arr[keyName].score,arr[keyName].second_lang)
+      }
+      else
+      {
+        arr[keyName].score = arr[keyName].score*0.02
+        console.log("bruh twaice",arr[keyName].name,arr[keyName].score)
+      }
+
 
     })
     setBlogs(arr)
@@ -181,7 +200,7 @@ const handleSubmit = (e) => {
                       <tr key={data.github_ID}>     
                       <td >{data.name}</td>
                       <td>{data.gpa}</td>
-                      <td>{data.first_lang},{data.second_lang}</td>
+                      <td>{data.first_lang} , {data.second_lang}</td>
                       <td>none</td>
                       <td>{data.email}</td>
                       <td><Link to={`${data.github_ID}`} className="btn" target="_blank" >View</Link></td>
