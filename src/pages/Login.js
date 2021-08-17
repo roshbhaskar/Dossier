@@ -12,10 +12,10 @@ const Login = () => {
       <div className='container'>
         <img src={loginImg} alt='github user' />
         {/* <p className="dossier">Dossier.</p> */}
-        <button className='btn' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/' })}>
+        <button className='btn bt1' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/' })}>
           Candidate
         </button>
-        <button className='btn' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/recruiter' })}>
+        <button className='btn bt2' onClick={()=>loginWithRedirect({ redirectUri: 'http://localhost:3000/recruiter' })}>
           Recruiter
         </button>
       </div>
@@ -23,7 +23,7 @@ const Login = () => {
   );
 };
 const Wrapper = styled.section`
-  min-height: 100vh;
+  min-height: 80vh;
   display: grid;
   place-items: center;
   .dossier{
@@ -37,17 +37,21 @@ const Wrapper = styled.section`
   }
   .container {
     width: 90vw;
-    max-width: 600px;
+    max-width: 700px;
     text-align: center;
   }
   img {
-    margin-bottom: 2rem;
+    //margin-top: 2rem;
   }
   h1 {
     margin-bottom: 1.5rem;
   }
   .btn{
-    margin: 1rem;
+    margin-left: 7rem;
+    margin-right: 7rem;
+    //margin-top:5rem;
+    
   }
+  
 `;
 export default Login;
