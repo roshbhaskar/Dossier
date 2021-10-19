@@ -18,9 +18,9 @@ const Webscraper =()=> {
 
   const fetchDetails=async()=> {
     // use the request-promise library to fetch the HTML from pokemon.org
-    rp(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/${hacker_User}`)
+    rp(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`)
       .then(html => 
-        {const nameValue = document.getElementsByClassName("ui-badge-wrap");
+        {//const nameValue = document.getElementsByClassName("ui-badge-wrap");
         console.log(html)
       })
    // const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/raniyerhh`);
@@ -28,16 +28,14 @@ const Webscraper =()=> {
     // console.log(response);
   }
 
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (hacker_User) {
-      // more logic coming up soon
-      //searchGithubUser(github_User)
-      // console.log("lol",searchGithubUser(github_User));
+     
       fetchDetails()
-      //optional
-      // setUser('');
+      
     }
   };
 
