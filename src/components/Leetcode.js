@@ -1,12 +1,15 @@
 import React from "react";
 import styled from 'styled-components';
 import axios from 'axios';
-
+import { firebase } from '@firebase/app';
+import '@firebase/firestore';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Leetcode =()=> {
   const [Leet_User, setUser] = React.useState('');
   const GRAPHQL_API = "https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql";
   const [data,setData] = React.useState([])
+  const { user  } = useAuth0();
   const fetchDetails=async()=> {
    
     const QUERY = `
@@ -27,11 +30,27 @@ const Leetcode =()=> {
               GRAPHQL_API,{
                 query : QUERY
               }
-            );
-    
-            const result = queryResult.data.data;
+            ).catch((err) =>
+            console.log(err)
+          );
+          if(queryResult){
+          const result = queryResult.data.data;
+          if(result.matchedUser){
+            
             setData({data: result.matchedUser.submitStats.acSubmissionNum})
-            console.log("HELLOO",result.matchedUser.submitStats.acSubmissionNum)
+            console.log("HELLOO",result.matchedUser.submitStats.acSubmissionNum[1].count)
+            firebase.firestore().collection('users').doc(user.email).set({
+              easy:result.matchedUser.submitStats.acSubmissionNum[1].count,
+              medium:result.matchedUser.submitStats.acSubmissionNum[2].count,
+              hard:result.matchedUser.submitStats.acSubmissionNum[3].count
+            },{merge:true});
+
+          }
+          else{
+            console.log('Leetcode username is invalid')
+          }
+        }
+            
         };
         fetchData();
   }

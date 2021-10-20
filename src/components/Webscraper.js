@@ -1,23 +1,43 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import rp from "request-promise";
+import { firebase } from '@firebase/app';
+import '@firebase/firestore';
 import { useAuth0 } from '@auth0/auth0-react';
-
-
+import axios from 'axios';
 
 const Webscraper =()=> {
   const [hacker_User, setUser] = React.useState('');
-
+  const { user  } = useAuth0();
   const fetchDetails=async()=> {
     // use the request-promise library to fetch the HTML from pokemon.org
-    rp(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`)
-      .then(html => 
-        {//const nameValue = document.getElementsByClassName("ui-badge-wrap");
-        console.log(html)
-      })
+    // rp(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`)
+    //   .then(html => 
+    //     {//const nameValue = document.getElementsByClassName("ui-badge-wrap");
+    //     console.log(html)
+        
+    //   })
    // const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/raniyerhh`);
     // // const json = await response.json();
     // console.log(response);
+    const response = await axios(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`).catch((err) =>
+      console.log(err)
+    );
+    if(response){
+      console.log("ITS DONE HERE!",response.data.model);
+      //firebase.firestore().collection('users').doc(user.email).set({});
+      if(response.data.model.country!='')
+      {
+        firebase.firestore().collection('users').doc(user.email).set({country:response.data.model.country},{merge:true});
+      }
+      if(response.data.model.school!='')
+      {
+        firebase.firestore().collection('users').doc(user.email).set({school:response.data.model.school},{merge:true});
+      }
+    }
+    else{
+      console.log("no response");
+    }
   }
 
   
