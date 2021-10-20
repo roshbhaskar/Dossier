@@ -1,30 +1,46 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from 'styled-components';
-import rp from "request-promise";
-import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 
-
-const Webscraper =()=> {
-  const [hacker_User, setUser] = React.useState('');
-
+const Leetcode =()=> {
+  const [Leet_User, setUser] = React.useState('');
+  const GRAPHQL_API = "https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql";
+  const [data,setData] = React.useState([])
   const fetchDetails=async()=> {
-    // use the request-promise library to fetch the HTML from pokemon.org
-    rp(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`)
-      .then(html => 
-        {//const nameValue = document.getElementsByClassName("ui-badge-wrap");
-        console.log(html)
-      })
-   // const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/raniyerhh`);
-    // // const json = await response.json();
-    // console.log(response);
+   
+    const QUERY = `
+        { matchedUser(username: "${Leet_User}") {
+            username
+            submitStats: submitStatsGlobal {
+            acSubmissionNum {
+            difficulty
+            count
+            submissions
+                            }
+                }
+            }
+        }
+        `;
+        const fetchData = async() =>{
+            const queryResult = await axios.post(
+              GRAPHQL_API,{
+                query : QUERY
+              }
+            );
+    
+            const result = queryResult.data.data;
+            setData({data: result.matchedUser.submitStats.acSubmissionNum})
+            console.log("HELLOO",result.matchedUser.submitStats.acSubmissionNum)
+        };
+        fetchData();
   }
 
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (hacker_User) {
+    if (Leet_User) {
      
       fetchDetails()
       
@@ -39,8 +55,8 @@ const Webscraper =()=> {
      
             <input
               type='text'
-              placeholder='HackerRank'
-              value={hacker_User}
+              placeholder='Leetcode'
+              value={Leet_User}
               onChange={(e) => setUser(e.target.value)}
             />
             {/* {!isLoading && ( */}
@@ -129,4 +145,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default Webscraper;
+export default Leetcode;
