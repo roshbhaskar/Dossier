@@ -9,6 +9,7 @@ import axios from 'axios';
 const Webscraper =()=> {
   const [hacker_User, setUser] = React.useState('');
   const { user  } = useAuth0();
+  const [error,setError] = React.useState(false)
   const fetchDetails=async()=> {
     // use the request-promise library to fetch the HTML from pokemon.org
     // rp(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`)
@@ -21,11 +22,13 @@ const Webscraper =()=> {
     // // const json = await response.json();
     // console.log(response);
     const response = await axios(`https://cors-anywhere.herokuapp.com/https://www.hackerrank.com/rest/contests/master/hackers/${hacker_User}/profile`).catch((err) =>
-      console.log(err)
+      //console.log(err);
+      setError(true)
     );
     if(response){
       console.log("ITS DONE HERE!",response.data.model);
       //firebase.firestore().collection('users').doc(user.email).set({});
+      setError(false)
       if(response.data.model.country!='')
       {
         firebase.firestore().collection('users').doc(user.email).set({country:response.data.model.country},{merge:true});
@@ -37,6 +40,7 @@ const Webscraper =()=> {
     }
     else{
       console.log("no response");
+      setError(true)
     }
   }
 
@@ -53,6 +57,12 @@ const Webscraper =()=> {
 
     return (
       <Wrapper>
+        {error && (
+          <ErrorWrapper>
+            <p>Invalid HackerRank Username!</p>
+          </ErrorWrapper>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className='form-control'>
             {/* <MdSearch /> */}
@@ -68,6 +78,7 @@ const Webscraper =()=> {
             {/* )} */}
           </div>
         </form>
+        {/* <br/> */}
       </Wrapper>
     );
   
@@ -146,6 +157,22 @@ const Wrapper = styled.div`
     margin-bottom: 0;
     color: var(--clr-grey-5);
     font-weight: 400;
+  }
+`;
+
+const ErrorWrapper = styled.article`
+  position: absolute;
+  width: 90vw;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  text-transform: capitalize;
+  p {
+    color: red;
+    letter-spacing: var(--spacing);
+    top: 100px;
+    position: relative;
+    //right:10px;
   }
 `;
 

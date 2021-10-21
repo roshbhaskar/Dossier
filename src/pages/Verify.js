@@ -15,11 +15,14 @@ function Verify() {
             <Search/>
             {/* <br/> */}
             <br/>
+            <br/>
             <Leetcode/>
             {/* <br/> */}
             <br/>
+            <br/>
             <Webscraper/>
             {/* <br/> */}
+            <br/>
             <br/>
             <h3>Resume Parser</h3>
             {/* <br/> */}

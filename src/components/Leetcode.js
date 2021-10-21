@@ -9,7 +9,9 @@ const Leetcode =()=> {
   const [Leet_User, setUser] = React.useState('');
   const GRAPHQL_API = "https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql";
   const [data,setData] = React.useState([])
+  const [error,setError] = React.useState(false)
   const { user  } = useAuth0();
+  
   const fetchDetails=async()=> {
    
     const QUERY = `
@@ -44,10 +46,12 @@ const Leetcode =()=> {
               medium:result.matchedUser.submitStats.acSubmissionNum[2].count,
               hard:result.matchedUser.submitStats.acSubmissionNum[3].count
             },{merge:true});
-
+            setError(false)
+            
           }
           else{
             console.log('Leetcode username is invalid')
+            setError(true)
           }
         }
             
@@ -68,10 +72,17 @@ const Leetcode =()=> {
 
     return (
       <Wrapper>
+        
+        {error && (
+          <ErrorWrapper>
+            <p>Invalid Leetcode Username!</p>
+          </ErrorWrapper>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className='form-control'>
             {/* <MdSearch /> */}
-     
+            
             <input
               type='text'
               placeholder='Leetcode'
@@ -161,6 +172,22 @@ const Wrapper = styled.div`
     margin-bottom: 0;
     color: var(--clr-grey-5);
     font-weight: 400;
+  }
+`;
+
+const ErrorWrapper = styled.article`
+  position: absolute;
+  width: 90vw;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  text-transform: capitalize;
+  p {
+    color: red;
+    letter-spacing: var(--spacing);
+    top: 100px;
+    position: relative;
+    //right:80px;
   }
 `;
 
