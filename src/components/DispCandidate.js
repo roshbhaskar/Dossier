@@ -69,44 +69,6 @@ function DispCandidate() {
     return 0;
   }
    
-  //const [info , setInfo] = useState([]);
-  
-    // Start the fetch operation as soon as
-    // the page loads
-    // window.addEventListener('load', () => {
-    //     Fetchdata();
-    //   });
-  
-    // // Fetch the required data using the get() method
-    // const Fetchdata =async()=>{
-    //   firebase.firestore().collection('users').get().then((querySnapshot) => {
-             
-    //         // Loop through the data and store
-    //         // it in array to display
-    //         querySnapshot.forEach(element => {
-    //             var data = element.data();
-    //             setBlogs(arr => [...arr , data]);
-                  
-    //         });
-    //     })
-    // }
-
-  //console.log("blogs?",blogs);//,"lsit",List);
-
-//   return (
-//     <div className="App">
-//       {
-//         blogs && blogs.map(blog=>{
-//           return(
-//             <div className="blog-container">
-//               <h4>{blog.name}</h4>
-//               <p>{blog.github_ID}</p>
-//             </div>
-//           )
-//         })
-//       }
-//     </div>
-//   );
 
 const [skill,setSkill]=useState('')
 const handleSubmit = (e) => {
