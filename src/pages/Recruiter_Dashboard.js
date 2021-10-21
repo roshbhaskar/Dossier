@@ -115,14 +115,20 @@ const Recruiter_Dashboard = () => {
       <br/>
       {/* <center><h1>Name of candidate</h1></center> */}
       <center><h2>{name}</h2><br/></center>
-      <center><center><div className="headings" style={{display:"flex"}}><h3 className="gpa">GPA : {gpa}</h3><br/><h3>Email : {email}</h3></div></center></center>
+      <div className="headings" ><h3 className="gpa">GPA : {gpa}</h3><h3 className="email">Email : {email}</h3>
       {/* <User /> */}
-      <center><center><div className="headingss" style={{display:"flex"}}><h3 className="school">School : {school}</h3><br/><br/><h3>  Location : {loc}</h3></div></center></center>
+      <h3 className="school">School : {school}</h3><h3 className="loc">  Location : {loc}</h3></div>
+      <br/>
+      <div className="bground">
+      <text className="leet">Leetcode problems</text>
       <div className="badges" style={{display:"flex"}}>
       <div className="easy">Easy : {easy}</div>
       <div className="med">Med : {med}</div>
       <div className="hard">Hard : {hard}</div>
       </div>
+      <br/>
+      </div>
+      <br/>
       <Dec_repos/>
     </Wrapper>
   );
@@ -131,13 +137,29 @@ const Recruiter_Dashboard = () => {
 const Wrapper = styled.section`
 text-align: center;
 place-items: center;
-.gpa {
-  margin-right:6rem;
+// .gpa {
+//   margin-right:3rem;
+// }
+// .email,.loc {
+//   margin-left:10rem;
+// }
+.leet{
+  text-anchor: middle;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: normal;
+}
 }
 .badges{
   gap : 10rem;
-  margin-left:30%;
+  margin-left:27%;
+  margin-top:1rem;
 }
+.bground {
+    margin-left: 8rem;
+    margin-right:8rem;
+    background: rgb(255, 255, 255);
+  }
 .easy {
   width: 100px;
   height: 100px;
@@ -146,7 +168,7 @@ place-items: center;
   font-size: 20px;
   color: #fff;
   text-align: center;
-  background: green;
+  background: rgb(44, 174, 186);
 }
 .med {
   width: 100px;
@@ -156,7 +178,7 @@ place-items: center;
   font-size: 20px;
   color: #fff;
   text-align: center;
-  background: orange;
+  background: rgb(255, 197, 51);
 }
 .hard {
   width: 100px;
@@ -166,30 +188,34 @@ place-items: center;
   font-size: 20px;
   color: #fff;
   text-align: center;
-  background: red;
+  background: rgb(242, 114, 111);
 }
-.school {
-  margin-right:3rem;
-}
+// .school {
+//   margin-right:3rem;
+// }
   h3 {
-    margin-top:1rem;
+    //margin-top:1rem;
     color: var(--clr-grey-3);
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
+    font-size:1.2rem;
+  }
+  h4{
+    margin-top:1rem;
   }
   
-  .headings{
-    // place-items: center;
-    // justify-items: center;
-    margin-left:30%;
-    display: flex
-  }
-  .headingss{
-    // place-items: center;
-    // justify-items: center;
-    margin-left:10%;
-    display: flex
-    gap:4rem;
-  }
+  // .headings{
+  //   // place-items: center;
+  //   // justify-items: center;
+  //    margin-left:10%;
+  //   // display: flex
+  // }
+  // .headingss{
+  //   // place-items: center;
+  //   // justify-items: center;
+  //   margin-left:10%;
+  //   // display: flex
+  //   // gap:4rem;
+  // }
   .dossier{
    display:revert;
     width: 15%;
