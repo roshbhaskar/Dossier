@@ -5,6 +5,7 @@ import { Search } from '../components';
 import Leetcode from '../components/Leetcode';
 import Webscraper from '../components/Webscraper';
 import loginImg from '../images/Dossier.png';
+import Resume_parse from '../components/Resume_parse';
 
 function Verify() {
     return (
@@ -26,6 +27,7 @@ function Verify() {
             <br/>
             <h3>Resume Parser</h3>
             {/* <br/> */}
+            <Resume_parse/>
             <br/>
             <Link to = "/profile" className="btn">Continue</Link>
         </Wrapper>
