@@ -88,6 +88,7 @@ const GithubProvider = ({ children }) => {
         error,
         searchGithubUser,
         isLoading,
+        setError,
       }}
     >
       {children}

@@ -14,7 +14,7 @@ const Search = () => {
 
   const { user  } = useAuth0();
   
-  const { requests, error, searchGithubUser, isLoading } = React.useContext(
+  const { requests, error, searchGithubUser, isLoading, setError } = React.useContext(
     GithubContext
   );
 
@@ -23,8 +23,17 @@ const Search = () => {
       console.log(err)
     );
     if(response){
-      console.log("ITS DONE HERE!",error);
+      console.log("Github API Responded!",response,user);
+      if(response.data.name==user.given_name || response.data.name==user.family_name)
+      {
       firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User,email:user.email,gpa:5});
+      setError({show:false,msg:''})  
+    }
+      else
+      {
+        setError({show:true,msg:'Invalid Github username!'})
+      }
+
     }
     else{
       console.log("no response");

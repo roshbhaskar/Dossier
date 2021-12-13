@@ -40,7 +40,7 @@ const Leetcode =()=> {
           if(result.matchedUser){
             
             setData({data: result.matchedUser.submitStats.acSubmissionNum})
-            console.log("HELLOO",result.matchedUser.submitStats.acSubmissionNum[1].count)
+            console.log("Leetcode API Responded",result.matchedUser.submitStats.acSubmissionNum[1].count)
             firebase.firestore().collection('users').doc(user.email).set({
               easy:result.matchedUser.submitStats.acSubmissionNum[1].count,
               medium:result.matchedUser.submitStats.acSubmissionNum[2].count,
