@@ -11,7 +11,8 @@ const Leetcode =()=> {
   const [data,setData] = React.useState([])
   const [error,setError] = React.useState(false)
   const { user  } = useAuth0();
-  
+  var gpa = 0
+  var GP = 0
   const fetchDetails=async()=> {
    
     const QUERY = `
@@ -38,13 +39,18 @@ const Leetcode =()=> {
           if(queryResult){
           const result = queryResult.data.data;
           if(result.matchedUser){
-            
+            gpa = (result.matchedUser.submitStats.acSubmissionNum[1].count/530)+(result.matchedUser.submitStats.acSubmissionNum[2].count/1120)+(result.matchedUser.submitStats.acSubmissionNum[1].count/448)
+            gpa = gpa*0.1
+            GP = Math.round(gpa * 1000) / 10
+            console.log('GPA',gpa)
             setData({data: result.matchedUser.submitStats.acSubmissionNum})
             console.log("Leetcode API Responded",result.matchedUser.submitStats.acSubmissionNum[1].count)
             firebase.firestore().collection('users').doc(user.email).set({
               easy:result.matchedUser.submitStats.acSubmissionNum[1].count,
               medium:result.matchedUser.submitStats.acSubmissionNum[2].count,
-              hard:result.matchedUser.submitStats.acSubmissionNum[3].count
+              hard:result.matchedUser.submitStats.acSubmissionNum[3].count,
+              score : gpa,
+              gpa : GP
             },{merge:true});
             setError(false)
             

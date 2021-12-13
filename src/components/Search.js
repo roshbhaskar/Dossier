@@ -26,7 +26,7 @@ const Search = () => {
       console.log("Github API Responded!",response,user);
       if(response.data.name==user.given_name || response.data.name==user.family_name)
       {
-      firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User,email:user.email,gpa:5});
+      firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User,email:user.email},{merge:true});
       setError({show:false,msg:''})  
     }
       else
