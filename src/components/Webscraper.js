@@ -26,9 +26,18 @@ const Webscraper =()=> {
       setError(true)
     );
     if(response){
-      console.log("ITS DONE HERE!",response.data.model);
+      console.log("HackerRank API has responded!",response.data.model);
       //firebase.firestore().collection('users').doc(user.email).set({});
-      setError(false)
+      console.log('User info',user)
+      
+      if(user.given_name!=response.data.model.personal_first_name)
+      {
+        setError(true)
+        console.log('Unauthorized HackerRank username!')
+      }
+      else
+      {
+        setError(false)
       if(response.data.model.country!='')
       {
         firebase.firestore().collection('users').doc(user.email).set({country:response.data.model.country},{merge:true});
@@ -36,6 +45,7 @@ const Webscraper =()=> {
       if(response.data.model.school!='')
       {
         firebase.firestore().collection('users').doc(user.email).set({school:response.data.model.school},{merge:true});
+      }
       }
     }
     else{
