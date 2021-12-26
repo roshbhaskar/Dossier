@@ -37,6 +37,7 @@ const Repos = () => {
     .slice(0, 5);
 
   // most stars per language
+    //console.log("Most used",mostUsed);
 
   const mostPopular = Object.values(languages)
     .sort((a, b) => {
@@ -65,13 +66,14 @@ const Repos = () => {
   stars = Object.values(stars).slice(-5).reverse();
   forks = Object.values(forks).slice(-5).reverse();
 
-  console.log(mostUsed[0],mostUsed);
+  console.log("Most used",mostUsed);
+  console.log("stars",stars);
   if(mostUsed[0]){
-    console.log("USEREMAIL",user.email)
+    //console.log("USEREMAIL",user.email)
     firebase.firestore().collection('users').doc(user.email).set({first_lang:mostUsed[0].label,second_lang:mostUsed[1].label,score:0.01},{merge:true});
   }
   else{
-    console.log("USEREMAIL",user.email)
+    //console.log("USEREMAIL",user.email)
     firebase.firestore().collection('users').doc(user.email).set({first_lang:"none",second_lang:"none",score:0.01},{merge:true});
     
   }

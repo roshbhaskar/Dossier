@@ -106,6 +106,19 @@ place-items: center;
 // .email,.loc {
 //   margin-left:10rem;
 // }
+@media (max-width: 1209px) {
+  .easy {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    background: red;
+  }
+}
+
 .leet{
   text-anchor: middle;
   font-family: Roboto;
@@ -115,7 +128,8 @@ place-items: center;
 }
 .badges{
   gap : 10rem;
-  margin-left:27%;
+  margin-left:15rem;
+  margin-right:10rem;
   margin-top:1rem;
 }
 .bground {

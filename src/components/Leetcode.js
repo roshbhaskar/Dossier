@@ -9,7 +9,10 @@ const Leetcode =()=> {
   const [Leet_User, setUser] = React.useState('');
   const GRAPHQL_API = "https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql";
   const [data,setData] = React.useState([])
+  const [error,setError] = React.useState(false)
   const { user  } = useAuth0();
+  var gpa = 0
+  var GP = 0
   const fetchDetails=async()=> {
    
     const QUERY = `
@@ -36,18 +39,25 @@ const Leetcode =()=> {
           if(queryResult){
           const result = queryResult.data.data;
           if(result.matchedUser){
-            
+            gpa = (result.matchedUser.submitStats.acSubmissionNum[1].count/530)+(result.matchedUser.submitStats.acSubmissionNum[2].count/1120)+(result.matchedUser.submitStats.acSubmissionNum[1].count/448)
+            gpa = gpa*0.1
+            GP = Math.round(gpa * 1000) / 10
+            console.log('GPA',gpa)
             setData({data: result.matchedUser.submitStats.acSubmissionNum})
-            console.log("HELLOO",result.matchedUser.submitStats.acSubmissionNum[1].count)
+            console.log("Leetcode API Responded",result.matchedUser.submitStats.acSubmissionNum[1].count)
             firebase.firestore().collection('users').doc(user.email).set({
               easy:result.matchedUser.submitStats.acSubmissionNum[1].count,
               medium:result.matchedUser.submitStats.acSubmissionNum[2].count,
-              hard:result.matchedUser.submitStats.acSubmissionNum[3].count
+              hard:result.matchedUser.submitStats.acSubmissionNum[3].count,
+              score : gpa,
+              gpa : GP
             },{merge:true});
-
+            setError(false)
+            
           }
           else{
             console.log('Leetcode username is invalid')
+            setError(true)
           }
         }
             
@@ -68,10 +78,17 @@ const Leetcode =()=> {
 
     return (
       <Wrapper>
+        
+        {error && (
+          <ErrorWrapper>
+            <p>Invalid Leetcode Username!</p>
+          </ErrorWrapper>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className='form-control'>
             {/* <MdSearch /> */}
-     
+            
             <input
               type='text'
               placeholder='Leetcode'
@@ -161,6 +178,22 @@ const Wrapper = styled.div`
     margin-bottom: 0;
     color: var(--clr-grey-5);
     font-weight: 400;
+  }
+`;
+
+const ErrorWrapper = styled.article`
+  position: absolute;
+  width: 90vw;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  text-transform: capitalize;
+  p {
+    color: red;
+    letter-spacing: var(--spacing);
+    top: 100px;
+    position: relative;
+    //right:80px;
   }
 `;
 

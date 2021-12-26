@@ -76,7 +76,7 @@ const GithubProvider = ({ children }) => {
   useEffect(checkRequests, []);
   // get initial user
   useEffect(() => {
-    searchGithubUser('raniyer');//github id
+    searchGithubUser('roshbhaskar');//github id
   }, []);
   return (
     <GithubContext.Provider
@@ -88,6 +88,7 @@ const GithubProvider = ({ children }) => {
         error,
         searchGithubUser,
         isLoading,
+        setError,
       }}
     >
       {children}

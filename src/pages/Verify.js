@@ -5,6 +5,7 @@ import { Search } from '../components';
 import Leetcode from '../components/Leetcode';
 import Webscraper from '../components/Webscraper';
 import loginImg from '../images/Dossier.png';
+import Resume_parse from '../components/Resume_parse';
 
 function Verify() {
     return (
@@ -15,14 +16,18 @@ function Verify() {
             <Search/>
             {/* <br/> */}
             <br/>
+            <br/>
             <Leetcode/>
             {/* <br/> */}
+            <br/>
             <br/>
             <Webscraper/>
             {/* <br/> */}
             <br/>
-            <h3>Resume Parser</h3>
+            <br/>
+            {/* <h3>Resume Parser</h3> */}
             {/* <br/> */}
+            {/* <Resume_parse/> */}
             <br/>
             <Link to = "/profile" className="btn">Continue</Link>
         </Wrapper>
