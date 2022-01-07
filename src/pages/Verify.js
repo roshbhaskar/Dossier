@@ -25,9 +25,7 @@ function Verify() {
             {/* <br/> */}
             <br/>
             <br/>
-            {/* <h3>Resume Parser</h3> */}
-            {/* <br/> */}
-            {/* <Resume_parse/> */}
+            
             <br/>
             <Link to = "/profile" className="btn">Continue</Link>
         </Wrapper>

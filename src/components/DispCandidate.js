@@ -78,26 +78,21 @@ const handleSubmit = (e) => {
     Object.keys(arr).map(function(keyName, keyIndex) {
      
       //RECOMMENDER LOGIC!
-      // if(skill.toLowerCase()==blogs[keyName].first_lang.toLowerCase())
-      // {
-        //arr[keyName].score = arr[keyName].score+arr[keyName].gpa
-      //}
-      //setBlogs()
-      //console.log("Keyname",arr[keyName].first_lang,skill.toLowerCase(),arr[keyName].first_lang.toLowerCase());
+      
       if(arr[keyName].first_lang.toLowerCase()==skill.toLowerCase())
       {
         arr[keyName].score = arr[keyName].score+0.02
-        console.log("Gotem",arr[keyName].name,arr[keyName].score,arr[keyName].first_lang)
+        console.log("First preference",arr[keyName].name,arr[keyName].score,arr[keyName].first_lang)
       }
       else if(arr[keyName].second_lang.toLowerCase()==skill.toLowerCase())
       {
         arr[keyName].score = arr[keyName].score+0.01
-        console.log("Gotem twaice",arr[keyName].name,arr[keyName].score,arr[keyName].second_lang)
+        console.log("Second preference",arr[keyName].name,arr[keyName].score,arr[keyName].second_lang)
       }
       else
       {
         arr[keyName].score = arr[keyName].score*0.02
-        console.log("bruh twaice",arr[keyName].name,arr[keyName].score)
+        console.log("No need",arr[keyName].name,arr[keyName].score)
       }
 
 

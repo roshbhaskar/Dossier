@@ -24,10 +24,6 @@ function App() {
             <Recruiter/>
           </PrivateRoute>
 
-         
-          {/* <Route path='/verify' exact={true}>
-            <Verify/>
-          </Route> */}
           
           <Route path='/login' >
             <Login></Login>

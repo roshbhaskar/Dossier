@@ -44,11 +44,7 @@ const Recruiter_Dashboard = () => {
     const response=firebase.firestore().collection('users');
     const data=await response.get();
     data.docs.forEach(item=>
-    //   {
-    //  setBlogs([...blogs,item.data()])
-    // //  console.log(item);
-    // setList([...blogs,item]);
-    // }
+   
     {
       var data = item.data();
       if(data.github_ID == handle)
@@ -62,50 +58,12 @@ const Recruiter_Dashboard = () => {
         setLoc(data.country);
         setSchool(data.school);
       }
-        //setBlogs(arr => [...arr , data]);
-     // arr.push(data)
-     //blogs.push(data)
-        
+      
   }
     )
-    //console.log("INside:",blogs)
-    //console.log("data",data,"response",response);
+   
   }
   
-//   const updateGithub = async () =>{
-//     searchGithubUser(handle);
-//     const response = await axios(`${rootUrl}/users/${handle}`).catch((err) =>
-//       console.log(err)
-//     );
-//     if(response){
-//       console.log("ITS DONE HERE!",error);
-//       //firebase.firestore().collection('users').doc(user.email).set({name:user.name, github_ID:github_User,email:user.email,gpa:5});
-//     }
-//     else{
-//       console.log("no response");
-//     }
-//   }
-//   useEffect(() => {
-//     updateGithub();
-//   },[])
-  // get things from global context
-//   const handleSubmit = () => {
-//     //e.preventDefault();
-//     if (handle) {
-//       // more logic coming up soon
-//       searchGithubUser(handle)
-//       // console.log("lol",searchGithubUser(github_User));
-//       updateGithub()
-//       //optional
-//       // setUser('');
-//     }
-//   };
-//   handleSubmit()
-  
-  
-  
-  
-  //console.log(handle,"HANDLE")
   
   return (
     <Wrapper>

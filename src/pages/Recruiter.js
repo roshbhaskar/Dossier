@@ -9,30 +9,11 @@ function Recruiter() {
     const handleSubmit = (e) => {
         e.preventDefault();
       };
-    //console.log("This is skill",skill);
+   
     return (
         <div>
             <Navbar/>
-       {/* <center> <Wrapper>
-                
-            <form onSubmit={handleSubmit}>
-        
-            <div className='form-control'>
-                <input
-                type='text'
-                placeholder='Language/Skill'
-                value={skill}
-                onChange={(e) => setSkill(e.target.value)}
-                />
-              
-                <button className="btn" type="submit" >Search</button>
-               
-            </div>
-            </form>
-        </Wrapper>
-        
-        </center> */}
-            {/* <h2>HI</h2> */}
+      
             <DispCandidate />
         </div>
     )
